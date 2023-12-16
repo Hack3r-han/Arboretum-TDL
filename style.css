@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+input:not([type="checkbox"]), button{
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: initial;
+}
+
+body{
+    background-color: rgb(213, 210, 241);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 700px;
+}
+
+h2{
+    margin-bottom: 1rem;
+}
+
+.createTask input[type=text]{
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: aliceblue;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.createTask input[type=submit]{
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: rgb(131, 106, 184);
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.createTask input[type=submit]:hover{
+    opacity: 0.75;
+}
+
+.todoList .taskItem{
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.taskItem label{
+    display: block;
+    margin-right: 1rem; 
+    cursor: pointer;
+}
+
+.taskItem .taskContent{
+    flex: 1 1 0%;
+}
+
+.taskItem .taskContent input{
+    font-size: 1.01rem;
+}
+
+.taskItem .actions{
+    display: flex;
+    align-items: center;
+}
+
+.taskItem .actions button{
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.taskItem .actions button:hover{
+    opacity:0.75;
+}
+
+.taskItem .actions .edit{
+    margin-right: 0.5rem;
+    background-color: rgb(131, 106, 184);
+    color: white;
+}
+
+.taskItem .actions .delete{
+    background-color: rgb(231, 63, 33);
+    color: white;
+}
+
+.taskItem.done .taskContent input{
+    text-decoration: line-through;
+    color: gray;
+}

@@ -6,7 +6,67 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main>
+
+    <section class="createTask">
+        
+        <h1>ARBORETUM TASK MANAGER</h1>
+
+        <form id="newTaskForm">
+            <h2>¿Cuál es tu tarea?</h2>
+            <input 
+                type="text"
+                name="content"
+                id="content"
+                placeholder="e.j. Hornear pan">
+            <input type="submit" value="Agregar To-do">
+        </form>  
+
+    </section>
+
+    <section class="todoList">
+
+        <h2>LISTA DE TAREAS</h2>
+        <div id="list">
+
+            <div class="taskItem done">
+                <label>
+                    <input type="checkbox">
+                    <span class="bubble"></span>
+                </label>
+
+                <div class="taskContent">
+                    <input type="text" value="Hornear pan" readonly>
+                </div>
+
+                <div class="actions">
+                    <button class="edit">Editar</button>
+                    <button class="delete">Borrar</button>
+                </div>
+            </div>
+
+            <div class="taskItem">
+                <label>
+                    <input type="checkbox">
+                    <span class="bubble"></span>
+                </label>
     
+                <div class="taskContent">
+                    <input type="text" value="Dominación del mundo" readonly>
+                </div>
+    
+                <div class="actions">
+                    <button class="edit">Editar</button>
+                    <button class="delete">Borrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </section>
+
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
