@@ -20,9 +20,9 @@ body{
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: 10%;
 }
 
 section{
@@ -53,6 +53,7 @@ h2{
     background-color: rgb(131, 106, 184);
     border-radius: 0.5rem;
     margin-bottom: 1.5rem;
+    color: white;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
@@ -61,35 +62,35 @@ h2{
     opacity: 0.75;
 }
 
-.todoList .taskItem{
+.todoList .todoItem{
     display: flex;
     align-items: center;
-    background-color: aliceblue;
+    background-color: white;
     padding: 1rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
 }
 
-.taskItem label{
+.todoItem label{
     display: block;
     margin-right: 1rem; 
     cursor: pointer;
 }
 
-.taskItem .taskContent{
+.todoItem .taskContent{
     flex: 1 1 0%;
 }
 
-.taskItem .taskContent input{
+.todoItem .taskContent input{
     font-size: 1.01rem;
 }
 
-.taskItem .actions{
+.todoItem .taskActions{
     display: flex;
     align-items: center;
 }
 
-.taskItem .actions button{
+.todoItem .taskActions button{
     display: block;
     padding: 0.5rem;
     border-radius: 0.25rem;
@@ -97,22 +98,22 @@ h2{
     transition: 0.2s ease-in-out;
 }
 
-.taskItem .actions button:hover{
+.todoItem .taskActions button:hover{
     opacity:0.75;
 }
 
-.taskItem .actions .edit{
+.todoItem .taskActions .edit{
     margin-right: 0.5rem;
     background-color: rgb(131, 106, 184);
     color: white;
 }
 
-.taskItem .actions .delete{
+.todoItem .taskActions .delete{
     background-color: rgb(231, 63, 33);
     color: white;
 }
 
-.taskItem.done .taskContent input{
+.todoItem.done .taskContent input{
     text-decoration: line-through;
     color: gray;
 }
