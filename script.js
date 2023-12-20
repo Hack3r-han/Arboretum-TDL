@@ -69,17 +69,22 @@ function displayTasks() {
 
         todoList.appendChild(taskItem);
 
-    // Add event listener to each checkbox after adding elements to the DOM
+        //add event listener to each checkbox after adding elements to the DOM
         const inp = taskItem.querySelector('input[type="checkbox"]');
         inp.addEventListener('change', function () {
             tasks[index].done = this.checked;
             localStorage.setItem('tasks', JSON.stringify(tasks));
             updateTaskStyle(content, this.checked);
         });
+
+        //add event listener to delete tasks
+        deleteBtn.addEventListener('click', function () {
+        deleteTask(index);
+        });
     });
 }
 
-// Function to update task style based on checkbox state
+//function to update task style based on checkbox state
 function updateTaskStyle(content, isChecked) {
 const taskInput = content.querySelector('input[type="text"]');
 if (isChecked) {
@@ -91,3 +96,9 @@ if (isChecked) {
 }
 }
 
+//function to delete a task
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    displayTasks();
+}
