@@ -31,7 +31,7 @@ function displayTasks() {
 
     todoList.innerHTML = '';
 
-    tasks.forEach(task => {
+    tasks.forEach((task, index) => {
         const taskItem = document.createElement('div');
         taskItem.classList.add('todoItem');
 
@@ -68,6 +68,26 @@ function displayTasks() {
         taskItem.appendChild(actions);
 
         todoList.appendChild(taskItem);
+
+    // Add event listener to each checkbox after adding elements to the DOM
+        const inp = taskItem.querySelector('input[type="checkbox"]');
+        inp.addEventListener('change', function () {
+            tasks[index].done = this.checked;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            updateTaskStyle(content, this.checked);
+        });
     });
+}
+
+// Function to update task style based on checkbox state
+function updateTaskStyle(content, isChecked) {
+const taskInput = content.querySelector('input[type="text"]');
+if (isChecked) {
+    taskInput.style.textDecoration = 'line-through';
+    taskInput.style.color = 'gray';
+} else {
+    taskInput.style.textDecoration = 'none';
+    taskInput.style.color = 'black';
+}
 }
 
