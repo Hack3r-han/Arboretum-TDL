@@ -41,7 +41,7 @@ function displayTasks() {
         const input = document.createElement('input');
         const content = document.createElement('div');
         const actions = document.createElement('div');
-        const edit = document.createElement('button');
+        // const edit = document.createElement('button');
         const deleteBtn = document.createElement('button');
 
         input.type = 'checkbox';
@@ -51,17 +51,17 @@ function displayTasks() {
 
         content.classList.add('taskContent');
         actions.classList.add('taskActions');
-        edit.classList.add('edit');
+        // edit.classList.add('edit');
         deleteBtn.classList.add('delete');
 
         content.innerHTML = `<input type="text" value="${task.content}" readonly>`;
-        edit.innerHTML = 'Editar';
+        // edit.innerHTML = 'Editar';
         deleteBtn.innerHTML = 'Borrar';
 
         //these lines structure and assemble the various elements to create a single task item (taskItem), and then append it to the todoList element.
 
         label.appendChild(input);
-        actions.appendChild(edit);
+        // actions.appendChild(edit);
         actions.appendChild(deleteBtn); 
         taskItem.appendChild(label);
         taskItem.appendChild(content);
@@ -80,7 +80,7 @@ function displayTasks() {
         //add event listener to delete tasks
         deleteBtn.addEventListener('click', function () {
         deleteTask(index);
-        });
+        });  
     });
 }
 
