@@ -5,33 +5,43 @@ window.addEventListener('load', () => {
     //retrieve tasks from localStorage or initialize an empty array
     tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+    //call the function to display the tasks
     displayTasks();
 
+    //select the form with the id newTaskForm
     const newTaskForm = document.querySelector('#newTaskForm');
 
+    //Add a 'submit' event to the form
     newTaskForm.addEventListener('submit', e => {
         e.preventDefault(); //prevent the default behaviour of the form, which is to reload the page upon submission
 
+        //Create a task object with the info of the form
         const task = {
-            content: e.target.elements.content.value, //event>form>elements>content>text
+            content: e.target.elements.content.value, //event>form>elements>content>text (obtain the value)
             done: false,
-            createdAt: new Date().getTime()
+            // createdAt: new Date().getTime()
         };
 
+        //Add the new task to the task array
         tasks.push(task);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(tasks)); //keep the tasks in localStorage
         e.target.reset(); //clear the form input fields after submission
 
         displayTasks(); //update the displayed tasks on the page
     });
 });
 
+//function to show the tasks on the page
 function displayTasks() {
+    //select the element with the id todo-list
     const todoList = document.querySelector('#todo-list');
 
+    //clean the content
     todoList.innerHTML = '';
 
+    //iterate through the tasks
     tasks.forEach((task, index) => {
+        //Create HTML elements to represent the task
         const taskItem = document.createElement('div');
         taskItem.classList.add('todoItem');
 
@@ -44,6 +54,7 @@ function displayTasks() {
         // const edit = document.createElement('button');
         const deleteBtn = document.createElement('button');
 
+        //Configure the attributes and content of the elements created
         input.type = 'checkbox';
         input.checked = task.done;
 
@@ -69,7 +80,7 @@ function displayTasks() {
 
         todoList.appendChild(taskItem);
 
-        //add event listener to each checkbox after adding elements to the DOM
+        //Add a 'change' event to the checkbox to mark the task as completed or not completed
         const inp = taskItem.querySelector('input[type="checkbox"]');
         inp.addEventListener('change', function () {
             tasks[index].done = this.checked;
@@ -77,7 +88,7 @@ function displayTasks() {
             updateTaskStyle(content, this.checked);
         });
 
-        //add event listener to delete tasks
+        //add a 'click' event to the 'deleteBtn' button to delete the task
         deleteBtn.addEventListener('click', function () {
         deleteTask(index);
         });  
@@ -96,7 +107,7 @@ if (isChecked) {
 }
 }
 
-//function to delete a task
+//function to delete a task from the array 'tasks'
 function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
