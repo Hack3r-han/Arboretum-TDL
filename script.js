@@ -3,7 +3,7 @@ let tasks = [];
 
 window.addEventListener('load', () => {
     //retrieve tasks from localStorage or initialize an empty array
-    tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = JSON.parse(localStorage.getItem('tasks')) || []; //converting a JSON string into a JavaScript object (native format)
 
     //call the function to display the tasks
     displayTasks();
@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
         localStorage.setItem('tasks', JSON.stringify(tasks)); //keep the tasks in localStorage
         e.target.reset(); //clear the form input fields after submission
 
-        displayTasks(); //update the displayed tasks on the page
+        displayTasks(); //update the displayed tasks on the page by calling the displayTasks function
     });
 });
 
@@ -36,7 +36,7 @@ function displayTasks() {
     //select the element with the id todo-list
     const todoList = document.querySelector('#todo-list');
 
-    //clean the content
+    //clean the content to avoid duplication
     todoList.innerHTML = '';
 
     //iterate through the tasks
@@ -51,7 +51,7 @@ function displayTasks() {
         const input = document.createElement('input');
         const content = document.createElement('div');
         const actions = document.createElement('div');
-        // const edit = document.createElement('button');
+        const edit = document.createElement('button');
         const deleteBtn = document.createElement('button');
 
         //Configure the attributes and content of the elements created
@@ -62,17 +62,17 @@ function displayTasks() {
 
         content.classList.add('taskContent');
         actions.classList.add('taskActions');
-        // edit.classList.add('edit');
+        edit.classList.add('edit');
         deleteBtn.classList.add('delete');
 
         content.innerHTML = `<input type="text" value="${task.content}" readonly>`;
-        // edit.innerHTML = 'Editar';
+        edit.innerHTML = 'Editar';
         deleteBtn.innerHTML = 'Borrar';
 
         //these lines structure and assemble the various elements to create a single task item (taskItem), and then append it to the todoList element.
 
         label.appendChild(input);
-        // actions.appendChild(edit);
+        actions.appendChild(edit);
         actions.appendChild(deleteBtn); 
         taskItem.appendChild(label);
         taskItem.appendChild(content);
@@ -81,8 +81,8 @@ function displayTasks() {
         todoList.appendChild(taskItem);
 
         //Add a 'change' event to the checkbox to mark the task as completed or not completed
-        const inp = taskItem.querySelector('input[type="checkbox"]');
-        inp.addEventListener('change', function () {
+        const taskCheckbox = taskItem.querySelector('input[type="checkbox"]'); //searches for an <input> element with the type attribute set to "checkbox" within that task container.
+        taskCheckbox.addEventListener('change', function () {
             tasks[index].done = this.checked;
             localStorage.setItem('tasks', JSON.stringify(tasks));
             updateTaskStyle(content, this.checked);
@@ -90,14 +90,19 @@ function displayTasks() {
 
         //add a 'click' event to the 'deleteBtn' button to delete the task
         deleteBtn.addEventListener('click', function () {
-        deleteTask(index);
+            deleteTask(index); //call the delete function and determine which task is targeted for deletion from the array
         });  
+
+        //add a 'click' rvent to the 'edit' button to edit the task
+        edit.addEventListener('click', (event) => {
+            handleEdit(index, content, edit);
+        })
     });
 }
 
 //function to update task style based on checkbox state
 function updateTaskStyle(content, isChecked) {
-const taskInput = content.querySelector('input[type="text"]');
+const taskInput = content.querySelector('input[type="text"]'); //access the element in HTML
 if (isChecked) {
     taskInput.style.textDecoration = 'line-through';
     taskInput.style.color = 'gray';
@@ -112,4 +117,28 @@ function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     displayTasks();
+}
+
+//function to edit the task content
+function handleEdit(index, contentDiv, editButton) {
+    const task = tasks[index];
+    
+    //create an input field
+    const editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.value = task.content;
+
+    //replace the content div with the input field
+    contentDiv.innerHTML = '';
+    contentDiv.appendChild(editInput);
+
+    //change the button text to "Guardar"
+    editButton.innerHTML = 'Guardar';
+
+    //save button event listener
+    editButton.addEventListener('click', function () {
+        task.content = editInput.value; //update the task content with the new value
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        displayTasks(); //update the displayed tasks
+    });
 }
