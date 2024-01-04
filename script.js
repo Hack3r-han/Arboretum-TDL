@@ -142,3 +142,27 @@ function handleEdit(index, contentDiv, editButton) {
         displayTasks(); //update the displayed tasks
     });
 }
+
+//add the "Clean Tasks" button functionality
+const cleanTasksButton = document.getElementById('doneBtn');
+
+// Add a 'click' event listener to the button
+cleanTasksButton.addEventListener('click', function () {
+    // Clear tasks from the display
+    const todoList = document.querySelector('#todo-list');
+    todoList.innerHTML = '';
+
+    // Clear tasks from local storage
+    localStorage.removeItem('tasks');
+
+    // Update the tasks array to an empty array
+    tasks = [];
+});
+
+
+//add a sound to the doneBtn
+
+function sound(){
+    var snd = new Audio('birds.mp3')
+    snd.play()
+}

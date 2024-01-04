@@ -124,3 +124,12 @@ h1{
     text-decoration: line-through;
     color: gray;
 }
+
+#doneBtn{
+    transition: 0.3s;
+    transition-property: transform;
+}
+
+#doneBtn:hover{
+    transform: scale(1.2);
+}
