@@ -9,8 +9,7 @@ Features
 Task Management: Easily add, edit, and delete tasks.
 
 Installation
+
 To run the app locally:
 
 Clone the repository: git clone https://github.com/Hack3r-han/Arboretum-TDL.git
-Install dependencies: npm install or yarn install
-Start the app: npm start or yarn start
