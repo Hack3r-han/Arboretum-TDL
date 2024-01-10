@@ -14,7 +14,7 @@ input:not([type="checkbox"]), button{
 }
 
 body{
-    background-image: url('img/bg_img.jpg');
+    background-image: url('../img/bg_img.jpg');
     background-size: cover;
 }
 
