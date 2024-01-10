@@ -164,7 +164,7 @@ cleanTasksButton.addEventListener('click', function () {
 //add a sound to the doneBtn
 
 function sound(){
-    var snd = new Audio('sounds/birds.mp3')
+    var snd = new Audio('/assets/birds.mp3')
     snd.play()
 }
 

@@ -14,7 +14,7 @@ input:not([type="checkbox"]), button{
 }
 
 body{
-    background-image: url('../img/bg_img.jpg');
+    background-image: url('../assets/bg_img.jpg');
     background-size: cover;
 }
 
@@ -132,4 +132,34 @@ h1{
 
 #doneBtn:hover{
     transform: scale(1.2);
+}
+
+/* Responsive */
+
+@media screen and (min-width: 760px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .logo {
+        width: 350px; 
+    }
+   
+    .createTask input {
+        padding: 1.2rem 1.8rem;
+        font-size: 1.2rem;
+    }
+
+    .todoList .todoItem {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem; 
+    }
+
+    .todoItem label {
+        font-size: 1.2rem;
+    }
+
+    .todoItem .taskActions {
+        padding: 0.7rem; 
+    }
 }
